@@ -27,9 +27,9 @@ import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.content.res.Resources;
-import android.support.v4.content.pm.ShortcutInfoCompat;
-import android.support.v4.content.pm.ShortcutManagerCompat;
-import android.support.v4.graphics.drawable.IconCompat;
+import androidx.core.content.pm.ShortcutInfoCompat;
+import androidx.core.content.pm.ShortcutManagerCompat;
+import androidx.core.graphics.drawable.IconCompat;
 
 public class ShortcutsPlugin extends CordovaPlugin {
 
@@ -185,10 +185,10 @@ public class ShortcutsPlugin extends CordovaPlugin {
         Intent intent = new Intent();
         
         String activityClass = jsonIntent.optString(
-            "activityClass", 
+            "activityClass",
             this.cordova.getActivity().getClass().getName());
         String activityPackage = jsonIntent.optString(
-            "activityPackage", 
+            "activityPackage",
             this.cordova.getActivity().getPackageName());
         intent.setClassName(activityPackage, activityClass);
 
@@ -226,9 +226,6 @@ public class ShortcutsPlugin extends CordovaPlugin {
                 String key = keys.next();
                 Object value = extras.get(key);
                 if (value != null) {
-                    if (key.indexOf('.') < 0) {
-                        key = activityPackage + "." + key;                            
-                    }
                     if (value instanceof Boolean) {
                         intent.putExtra(key, (Boolean)value);
                     } 
@@ -331,7 +328,7 @@ public class ShortcutsPlugin extends CordovaPlugin {
             ShortcutManager shortcutManager = context.getSystemService(ShortcutManager.class);
             shortcutManager.setDynamicShortcuts(shortcuts);
 
-            Log.i(TAG, String.format("Saved % dynamic shortcuts.", count));
+            Log.i(TAG, String.format("Saved %d dynamic shortcuts.", count));
     }
 
     private ShortcutInfoCompat buildPinnedShortcut(

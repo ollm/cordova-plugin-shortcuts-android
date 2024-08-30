@@ -163,3 +163,9 @@ Call with an empty callback to de-register the existing callback.
 ```javascript
 window.plugins.Shortcuts.onNewIntent(); // De-register existing callback
 ```
+
+## CHANGES
+
+* v0.1.2 BREAKING: Do not append package name to keys under `Intent.Extras` dictionary
+* v0.1.1 Support loading icons from drawable resources
+* v0.1.0 Original version
