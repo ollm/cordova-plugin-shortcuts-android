@@ -3,7 +3,7 @@ interface Shortcut {
   shortLabel?: string;
   longLabel?: string;
   iconPath?: string;
-  iconFromResource?: string,
+  iconFromResource?: string;
   iconBitmap?: string;
   iconAdaptiveBitmap?: string;
   intent?: Intent;
