@@ -280,15 +280,19 @@ public class ShortcutsPlugin extends CordovaPlugin {
 
             Icon icon;
             String iconBitmap = jsonShortcut.optString("iconBitmap");
+            String iconAdaptiveBitmap = jsonShortcut.optString("iconAdaptiveBitmap");
             String iconFromResource = jsonShortcut.optString("iconFromResource");
 
             String activityPackage = this.cordova.getActivity().getPackageName();
         
-            if (iconBitmap.length() > 0) {
-                icon = Icon.createWithBitmap(decodeBase64Bitmap(iconBitmap));
-            } 
         
-            if (iconFromResource.length() > 0){
+            if(iconAdaptiveBitmap.length() > 0 && Build.VERSION.SDK_INT >= 26) {
+                icon = Icon.createWithAdaptiveBitmap(decodeBase64Bitmap(iconBitmap));
+            }
+            else if (iconBitmap.length() > 0) {
+                icon = Icon.createWithBitmap(decodeBase64Bitmap(iconBitmap));
+            }
+            else if (iconFromResource.length() > 0){
                 Resources activityRes = this.cordova.getActivity().getResources();
                 int iconId = activityRes.getIdentifier(iconFromResource, "drawable", activityPackage);
                 icon = Icon.createWithResource(context, iconId);
@@ -362,8 +366,12 @@ public class ShortcutsPlugin extends CordovaPlugin {
 
         IconCompat icon;
         String iconBitmap = jsonShortcut.optString("iconBitmap");
+        String iconAdaptiveBitmap = jsonShortcut.optString("iconAdaptiveBitmap");
 
-        if (iconBitmap.length() > 0) {
+        if(iconAdaptiveBitmap.length() > 0 && Build.VERSION.SDK_INT >= 26) {
+            icon = Icon.createWithAdaptiveBitmap(decodeBase64Bitmap(iconBitmap));
+        }
+        else if (iconBitmap.length() > 0) {
             icon = IconCompat.createWithBitmap(decodeBase64Bitmap(iconBitmap));
         }
         else {
