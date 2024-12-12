@@ -369,7 +369,7 @@ public class ShortcutsPlugin extends CordovaPlugin {
         String iconAdaptiveBitmap = jsonShortcut.optString("iconAdaptiveBitmap");
 
         if(iconAdaptiveBitmap.length() > 0 && Build.VERSION.SDK_INT >= 26) {
-            icon = Icon.createWithAdaptiveBitmap(decodeBase64Bitmap(iconBitmap));
+            icon = IconCompat.createWithAdaptiveBitmap(decodeBase64Bitmap(iconBitmap));
         }
         else if (iconBitmap.length() > 0) {
             icon = IconCompat.createWithBitmap(decodeBase64Bitmap(iconBitmap));
