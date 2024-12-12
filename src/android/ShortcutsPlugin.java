@@ -16,7 +16,6 @@ import android.util.Base64;
 import android.util.Log;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.BitmapDrawable;
